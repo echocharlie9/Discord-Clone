@@ -67,6 +67,6 @@ RUN apk del build-deps && \
     rm -rf ~/.cache/pip
 
 # CMD will run when this dockerfile is running
- CMD ["sh", "-c", "python manage.py collectstatic --no-input; python manage.py migrate; gunicorn apps.messenger.main.wsgi -b 0.0.0.0:8000"]
-#   & celery worker --app=apps.messenger.main.tasks
+ CMD ["sh", "-c", "python manage.py collectstatic --no-input; python manage.py migrate; gunicorn apps.core.main.wsgi -b 0.0.0.0:8000"]
+#   & celery worker --app=apps.core.main.tasks
 # CMD ["sh", "-c", "pipenv run python manage.py collectstatic --no-input; pipenv run python manage.py migrate; gunicorn mydjango.wsgi -b 0.0.0.0:8000 & celery worker --app=myapp.tasks"]

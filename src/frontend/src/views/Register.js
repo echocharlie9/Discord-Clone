@@ -10,6 +10,7 @@ function Register(props) {
         axios.post('http://127.0.0.1:8000/auth/users/', {
             username: values.username,
             password: values.password,
+            email: 'hi@gmail.com'
           }).then(
             response => {
                 console.log(response)

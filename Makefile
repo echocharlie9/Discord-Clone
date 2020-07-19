@@ -6,8 +6,8 @@ up:
 
 test:
 	docker-compose run \
-  -e DJANGO_SETTINGS_MODULE=settings \
-  --no-deps --rm web py.test -s
+  	-e DJANGO_SETTINGS_MODULE=settings \
+  	--no-deps --rm web py.test apps -s
 
 up-non-daemon:
 	docker-compose up

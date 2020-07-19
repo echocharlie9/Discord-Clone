@@ -4,9 +4,9 @@
 # import logging
 # logger = logging.getLogger("Celery")
 
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apps.messenger.main.settings')
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'apps.core.main.settings')
 
-# app = Celery('apps.messenger')
+# app = Celery('apps.core')
 
 # app.config_from_object('django.conf:settings', namespace='CELERY')
 

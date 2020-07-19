@@ -22,6 +22,8 @@ celery = "*"
 gunicorn = "*"
 pytest = "*"
 pytest-django = "*"
+pytest-asyncio = "*"
+uvicorn = "*"
 
 [requires]
 python_version = "3.8"

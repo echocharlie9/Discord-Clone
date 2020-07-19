@@ -2,7 +2,7 @@ from django.db import models
 
 from apps.room.main.models import Room
 # from django.contrib.auth.models import User
-# from apps.messenger.settings.AUTH_USER_MODEL
+# from apps.core.settings.AUTH_USER_MODEL
 from django.contrib.auth import get_user_model as user_model
 User = user_model()
 

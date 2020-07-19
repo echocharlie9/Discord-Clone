@@ -72,7 +72,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware'
 ]
 
-ROOT_URLCONF = 'apps.messenger.api.urls'
+ROOT_URLCONF = 'apps.core.api.urls'
 
 TEMPLATES = [
     {
@@ -90,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'apps.messenger.wsgi.application'
+# WSGI_APPLICATION = 'apps.core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -177,13 +177,13 @@ REST_FRAMEWORK = {
     ),
 }
 
-ASGI_APPLICATION = 'apps.messenger.api.routing.application'
+ASGI_APPLICATION = 'apps.core.api.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('redis', 6379)],
         },
     },
 }

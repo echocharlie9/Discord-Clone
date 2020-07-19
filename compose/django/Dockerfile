@@ -34,7 +34,8 @@ RUN apk add --no-cache --virtual build-deps \
     musl-dev \
     postgresql-dev\
     zlib-dev \
-    jpeg-dev 
+    jpeg-dev \
+    build-base
 # un-comment if you want to install numpy, pandas, scipy etc and their supported dependencies
 # g++ \
 # openblas-dev \
@@ -50,6 +51,7 @@ RUN pip install --upgrade pip
 # Installing requirements.pip from project
 
 COPY ./src/requirements.pip /scripts/
+RUN pip install -U setuptools
 RUN pip install --no-cache-dir -r /scripts/requirements.pip
 
 # RUN pip install pipenv
@@ -66,7 +68,8 @@ RUN apk del build-deps && \
     find -type d -name __pycache__ -prune -exec rm -rf {} \; && \
     rm -rf ~/.cache/pip
 
-# CMD will run when this dockerfile is running
- CMD ["sh", "-c", "python manage.py collectstatic --no-input; python manage.py migrate; gunicorn apps.messenger.main.wsgi -b 0.0.0.0:8000"]
-#   & celery worker --app=apps.messenger.main.tasks
-# CMD ["sh", "-c", "pipenv run python manage.py collectstatic --no-input; pipenv run python manage.py migrate; gunicorn mydjango.wsgi -b 0.0.0.0:8000 & celery worker --app=myapp.tasks"]
+
+ CMD ["sh", "-c", "python manage.py collectstatic --no-input; python manage.py migrate; uvicorn apps.core.main.asgi:application -b 0.0.0.0:8000"]
+
+#   & celery worker --app=apps.core.main.tasks
+

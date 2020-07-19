@@ -1,6 +1,6 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-
+from optparse import OptionParser
 from channels.generic.websocket import WebsocketConsumer
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -15,6 +15,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
         await self.accept()
+        print('accepted')
 
     async def disconnect(self, close_code):
     # Leave room group
@@ -25,7 +26,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # Receive message from WebSocket
     async def receive(self, text_data):
+        print('reacheddd')
+        print(text_data)
         text_data_json = json.loads(text_data)
+        print('reach')
         message = text_data_json['message']
         print(message + ' :receive')
         # Send message to room group
@@ -42,4 +46,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = event['message']
         print(message + ' :chat_message')
         # Send message to WebSocket
+        print([func for func in dir(ChatConsumer) if callable(getattr(ChatConsumer, func))])
         await self.send(text_data=json.dumps({ 'message': message}))
